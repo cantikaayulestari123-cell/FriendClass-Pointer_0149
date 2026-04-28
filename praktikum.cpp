@@ -1,63 +1,87 @@
 #include <iostream>
 using namespace std;
 
-class Produk {
-private:
-    double harga;
-    int jumlah;
+class layangLayang{
+    private:
+    int diagSatu, diagDua, sisiPendek, sisiPanjang, hasilLuas, hasilKeliling;
 
-public:
-    void input() {
-        cout << "Masukkan harga: ";
-        cin >> harga;
-        cout << "Masukkan jumlah: ";
-        cin >> jumlah;
+    public:
+    void luas(){
+        hasilLuas = 0.5 * diagSatu * diagDua;
     }
 
-    void output() {
-        cout << "Total harga: " << harga * jumlah << endl;
+    void keliling(){
+        hasilKeliling = sisiPendek * sisiPendek * sisiPanjang * sisiPanjang;
     }
 
-    friend double hitungTotal(Produk p);
+    void input(){
+        cout << "Masukan diagonal ke-1: ";
+        cin >> diagSatu;
+        cout << "Masukan diagonal ke-2: ";
+        cin >> diagDua;
+
+        cout << "Masukan sisi pendek: ";
+        cin >> sisiPendek;
+        cout << "Masukan sisi panjang: ";
+        cin >> sisiPanjang;
+    }
+    void output(){
+        cout << "hasil luas: " << hasilLuas << endl;
+        cout << "hasil keliling: " << hasilKeliling << endl;
+    }
+
+    friend class belahKetupat;
 };
 
-double hitungTotal(Produk p) {
-    return p.harga * p.jumlah;
-}
+class belahKetupat{
 
-class Diskon {
-private:
-    double persen;
 
-public:
-    void input() {
-        cout << "Masukkan diskon (%): ";
-        cin >> persen;
+    private:
+    int diagSatu, diagDua, sisi, hasilLuas, hasilKeliling;
+
+    public:
+    void luas(){
+        hasilLuas = 0.5 * diagSatu * diagDua;
     }
 
-    void output(double total) {
-        double potongan = total * persen / 100;
-        cout << "Harga setelah diskon: " << total - potongan << endl;
+    void keliling(){
+        hasilKeliling = sisi * sisi * sisi * sisi;
     }
 
-    void tampilTotal(Produk p) {
-        cout << "Total dari produk: " << hitungTotal(p) << endl;
+    void input(){
+        cout << "Masukan diagonal ke-1: ";
+        cin >> diagSatu;
+        cout << "Masukan diagonal ke-2: ";
+        cin >> diagDua;
+
+        cout << "Masukan sisi: ";
+        cin >> sisi;
+    }
+    void output(){
+        cout << "hasil luas: " << hasilLuas << endl;
+        cout << "hasil keliling: " << hasilKeliling << endl;
     }
 };
 
-int main() {
-    Produk p;
-    Diskon d;
+int main (){
+    layangLayang LayangSatu;
+    belahKetupat KetupatSatu;
 
-    p.input();
-    d.input();
+    cout << "masukan empat variable untuk kalkulasi luas dan keliling layang2 " << endl;
+    LayangSatu.input();
+    LayangSatu.luas();
+    LayangSatu.keliling();
+    LayangSatu.output();
 
-    double total = hitungTotal(p);
+    cout << endl;
 
-    p.output();
-    d.output(total);
+    cout << "Masukan tiga variable untuk kalkulasi luas dan keliling Belah Ketupat" << endl;
+    KetupatSatu.input();
+    KetupatSatu.luas();
+    KetupatSatu.keliling();
+    KetupatSatu.output();
 
-    d.tampilTotal(p);
+    cout << endl;
 
-    return 0;
+    
 }
