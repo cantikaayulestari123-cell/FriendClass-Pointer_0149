@@ -10,3 +10,6 @@ public:
         cout << "no induk = " << nim << endl;
     }
 };
+int main()
+{
+    mahasiswa *mhs = new mahasiswa {1};
